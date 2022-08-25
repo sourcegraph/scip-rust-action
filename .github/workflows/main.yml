@@ -1,0 +1,14 @@
+on: [pull_request]
+
+jobs:
+  test_scip_rust_action:
+    runs-on: ubuntu-latest
+    name: Check that SCIP Rust Action works as advertised.
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create SCIP data
+        uses: ./
+      - name: Upload SCIP data
+        uses: sourcegraph/lsif-upload-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
